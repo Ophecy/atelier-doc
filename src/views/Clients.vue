@@ -150,11 +150,11 @@ export default {
 
 	mounted() {
 		;
-		fetch('http://localhost:1234/clients').then(r => r.json()).then(d => this.clients = d).catch(console.log())
+		fetch('http://localhost:5000/clients').then(r => r.json()).then(d => this.clients = d).catch(console.log())
 	},
 		methods: {
 		deleteClient(id) {
-			fetch("http://localhost:1234/clients/"+id, {
+			fetch("http://localhost:5000/clients/"+id, {
 				method: "DELETE",
 				headers: {
 						"Content-type": "application/json; charset=UTF-8"
@@ -165,7 +165,7 @@ export default {
 			.catch(e => console.log(e))
 		},
 		editClient(id) {
-			fetch("http://localhost:1234/clients/"+id, {
+			fetch("http://localhost:5000/clients/"+id, {
 				method: "GET",
 				headers: {
 						"Content-type": "application/json; charset=UTF-8"
@@ -177,7 +177,7 @@ export default {
 			.catch(e => console.log(e))
 		},
 		updateClient(){
-			fetch("http://localhost:1234/clients/"+this.editingClient.id, {
+			fetch("http://localhost:5000/clients/"+this.editingClient.id, {
 				method: "PUT",
 				body: JSON.stringify({
 						firstname: this.editingClient.firstname,
@@ -197,7 +197,7 @@ export default {
 		addFacture(client){
 			let facture = prompt('Nouvelle facture ?')
 			client.factures.push(facture)
-			fetch("http://localhost:1234/clients/"+id, {
+			fetch("http://localhost:5000/clients/"+id, {
 				method: "PUT",
 				body: JSON.stringify({
 					firstname: client.firstname,
@@ -215,7 +215,7 @@ export default {
 			.catch(e => console.log(e))
 		},
 		fetchClients(){
-			fetch('http://localhost:1234/clients').then(r => r.json()).then(d => this.clients = d).catch(console.log())
+			fetch('http://localhost:5000/clients').then(r => r.json()).then(d => this.clients = d).catch(console.log())
 		},
 		closeModal(){
 			this.modalShown = false

@@ -6,7 +6,7 @@ NPM est installé par défaut avec NodeJS, mais yarn est plus efficace lors du t
 - Avec yarn : `yarn install`
 
 ## Configurer :
-Changer toutes les occurences de *"http://localhost:1234/"* par l'url et le port de votre instance de l'api.
+Changer toutes les occurences de *"http://localhost:5000/"* par l'url et le port de votre instance de l'api.
 
 ## Build l'interface : 
 - Avec npm: `npm run build`

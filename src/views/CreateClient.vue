@@ -35,7 +35,7 @@ export default {
 	methods: {
 		createClient(fn, ln) {
 			console.log(this.lastname, this.firstname);
-			fetch("http://localhost:1234/clients", {
+			fetch("http://localhost:5000/clients", {
 				method: "POST",
 				body: JSON.stringify({
 						firstname: fn,

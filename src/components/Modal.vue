@@ -78,7 +78,7 @@ export default {
   },
 	methods:{
 		updateClient() {
-			fetch("http://localhost:1234/clients", {
+			fetch("http://localhost:5000/clients", {
 				method: "POST",
 				body: JSON.stringify({
 					id:person.id,

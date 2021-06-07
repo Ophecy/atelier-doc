@@ -35,7 +35,7 @@ export default {
 	methods: {
 		createUser(fn, ln) {
 			console.log(this.lastname, this.firstname);
-			fetch("http://localhost:1234/users", {
+			fetch("http://localhost:5000/users", {
 				method: "POST",
 				body: JSON.stringify({
 						firstname: fn,

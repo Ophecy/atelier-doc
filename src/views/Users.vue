@@ -141,7 +141,7 @@ export default {
 
 		methods: {
 		deleteUser(id) {
-			fetch("http://localhost:1234/users/"+id, {
+			fetch("http://localhost:5000/users/"+id, {
 				method: "DELETE",
 				headers: {
 						"Content-type": "application/json; charset=UTF-8"
@@ -153,7 +153,7 @@ export default {
 			.catch(e => console.log(e))
 		},
 		editUser(id) {
-			fetch("http://localhost:1234/users/"+id, {
+			fetch("http://localhost:5000/users/"+id, {
 				method: "GET",
 				headers: {
 						"Content-type": "application/json; charset=UTF-8"
@@ -165,7 +165,7 @@ export default {
 			.catch(e => console.log(e))
 		},
 		updateUser(){
-			fetch("http://localhost:1234/users/"+this.editingUser.id, {
+			fetch("http://localhost:5000/users/"+this.editingUser.id, {
 				method: "PUT",
 				body: JSON.stringify({
 						firstname: this.editingUser.firstname,
@@ -183,7 +183,7 @@ export default {
 			.catch(e => console.log(e))
 		},
 		fetchUsers(){
-			fetch('http://localhost:1234/users').then(r => r.json()).then(d => this.users = d).catch(console.log())
+			fetch('http://localhost:5000/users').then(r => r.json()).then(d => this.users = d).catch(console.log())
 		}
 	}
 }
