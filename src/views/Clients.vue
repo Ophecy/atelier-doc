@@ -94,10 +94,13 @@
 					</ul>
 				</div>
 				<div class="flex flex-row justify-center">
-					<button role="button" class="bg-primary py-2 px-4 m-2 rounded-full" @click="editClient(client.id)">
+					<button role="button" class="bg-primary py-2 px-4 m-2 rounded-full" v-show="user=='admin'" @click="editClient(client.id)">
 						Éditer
 					</button>
-					<button role="button" class="bg-red-700 py-2 px-4 m-2 rounded-full" @click="deleteClient(client.id)">
+					<button role="button" class="bg-primary py-2 px-4 m-2 rounded-full" @click="addFacture(client)">
+						Ajouter facture
+					</button>
+					<button role="button" class="bg-red-700 py-2 px-4 m-2 rounded-full" v-show="user=='admin'" @click="deleteClient(client.id)">
 						Supprimer
 					</button>
 				</div>
@@ -109,8 +112,15 @@
 
 
 <script>
-import { ref } from 'vue'
 import { Dialog, DialogOverlay, TransitionChild, TransitionRoot } from '@headlessui/vue'
+import {computed, ref} from 'vue'
+import {useStore} from 'vuex'
+const store = useStore()
+
+const user = computed(() => {
+	return store.state.user
+})
+
 
 export default {
   components: {
@@ -173,6 +183,26 @@ export default {
 						firstname: this.editingClient.firstname,
 						lastname: this.editingClient.lastname,
 						admin:this.editingClient.admin
+				}),
+				headers: {
+						"Content-type": "application/json; charset=UTF-8"
+				}
+			})
+			.then(()=>{
+				this.open=false
+				this.fetchClients()
+			})
+			.catch(e => console.log(e))
+		},
+		addFacture(client){
+			let facture = prompt('Nouvelle facture ?')
+			client.factures.push(facture)
+			fetch("http://localhost:1234/clients/"+id, {
+				method: "PUT",
+				body: JSON.stringify({
+					firstname: client.firstname,
+					lastname: client.lastname,
+					factures: client.factures
 				}),
 				headers: {
 						"Content-type": "application/json; charset=UTF-8"

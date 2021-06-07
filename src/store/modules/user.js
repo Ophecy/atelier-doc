@@ -1,8 +1,6 @@
 export default {
 	state: ()=>({
-		name: '',
-		oauth: ''
-	}),
+		name: ''	}),
 	getters: {
 		getOAuth: state=>{
 			return state.oauth
@@ -10,8 +8,7 @@ export default {
 	},
 	mutations: {
 		SET_NAME(state, payload) {
-			state.name = payload.name
-			state.oauth = payload.oauth
+			state.name = name
 		}
 	},
 	actions: {

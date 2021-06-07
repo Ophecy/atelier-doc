@@ -8,13 +8,13 @@
 					placeholder="Nom d'utilisateur"
 					class=" mt-2 self-center block px-3 py-2 w-9/12 box-border border-solid border-0 border-b border-primary text-black; "/>
 				<input ref="password"
-					v-model="password"
 					type="password"
 					placeholder="Mot de passe"
 					class=" mt-2 self-center block px-3 py-2 w-9/12 box-border border-solid border-0 border-b border-primary text-black; " />
 				<button
 					role="button"
 					class="self-center mt-2 py-1 bg-primary rounded-lg w-40"
+					@click="saveName"
 				>
 					Se connecter
 				</button>
@@ -24,23 +24,29 @@
 	
 </template>
 
-<script setup>
-import {computed, ref} from 'vue'
+<script>
+import {computed} from 'vue'
 import {useStore} from 'vuex'
 const store = useStore()
 
-const username = ''
-const password = ''
-
 const user = computed(() => {
-	return store.state.user
+	return this.$store.state.user
 })
 
-const newName = ref('')
+let username = ''
 
-const saveName = ()=>{
-	store.dispatch('saveName', {name: newName.value, oauth: "token"})
-	newName.value=''
+export default {
+	data() {
+		return {
+			username,
+			user
+		}
+	},
+	methods: {
+		saveName() {
+		this.$store.dispatch('saveName', username.value)
+		this.$router.push('users')
+		}
+	}
 }
-
 </script>

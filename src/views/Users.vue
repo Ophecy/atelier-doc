@@ -87,7 +87,7 @@
 					</div>
 					<div class="self-center p-2 m-2">{{user.firstname}}</div>
 				</div>
-				<div class="flex flex-row justify-center" >
+				<div class="flex flex-row justify-center" v-show="user=='admin'">
 					<button role="button" class="bg-primary py-2 px-4 m-2 rounded-full" @click="editUser(user.id)">
 						Éditer
 					</button>
@@ -101,8 +101,15 @@
 </template>
 
 <script>
-import { ref } from 'vue'
 import { Dialog, DialogOverlay, TransitionChild, TransitionRoot } from '@headlessui/vue'
+import {computed, ref} from 'vue'
+import {useStore} from 'vuex'
+const store = useStore()
+
+const user = computed(() => {
+	return store.state.user
+})
+
 export default {
   components: {
 		Dialog,
